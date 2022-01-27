@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Categorys</title>
+</head>
+<body>
+<a th:text="#{category.link_create}" href="/create-category"></a>
+<br>
+<a th:text="#{blog.list}" href="/blogs"></a>
+<h1>Categorys</h1>
+<table class="blogs" border="1">
+    <tr>
+        <th>Category name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    <th:block th:each="category : ${categorys}">
+        <tr>
+            <td th:text="${category.categoryName}"></td>
+            <td><a th:text="#{category.edit}" th:href="@{/edit-category/__${category.id}__ }"></a></td>
+            <td><a th:text="#{category.delete}" th:href="@{/delete-category/__${category.id}__ }"></a></td>
+            <td><a th:text="#{category.view}" th:href="@{/view-category/__${category.id}__ }"></a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:text="#{category.previous}" th:href="@{'/categorys'(page=${categorys.number - 1})}" th:if="${categorys.hasPrevious()}"></a>
+    <span th:text="${categorys.number + 1}"></span>/<span th:text="${categorys.totalPages}"></span>
+    <a th:text="#{category.next}" th:href="@{'/categorys'(page=${categorys.number + 1})}" th:if="${categorys.hasNext()}"></a>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

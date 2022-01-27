@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Room Service</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+<body>
+<div th:replace="/frame/navbar :: div"></div>
+<h1>Create Room Service</h1>
+<a class="btn btn-primary" href="/list" role="button">Service list</a>
+
+<form id="form" th:action="@{/create-service-room}" th:object="${serviceDto}" method="post">
+    <input type="hidden" th:field="*{serviceId}"/>
+    <div class="container">
+        <div class="form-group">
+            <label>Service Code:</label>
+            <input type="text" class="form-control" th:field="*{serviceCode}">
+            <p class="text-danger" th:if="${#fields.hasErrors('serviceCode')}" th:errors="*{serviceCode}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Service Name:</label>
+            <input type="text" class="form-control" th:field="*{serviceName}">
+            <p class="text-danger" th:if="${#fields.hasErrors('serviceName')}" th:errors="*{serviceName}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Service Area:</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" th:field="*{serviceArea}">
+                <span class="input-group-text">.00</span>
+            </div>
+            <!--            <input type="text" class="form-control" th:field="*{serviceArea}">-->
+            <p class="text-danger" th:if="${#fields.hasErrors('serviceArea')}" th:errors="*{serviceArea}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Service Cost:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" th:field="*{serviceCost}">
+                <span class="input-group-text">VND</span>
+            </div>
+            <!--            <input type="text" class="form-control" th:field="*{serviceCost}">-->
+            <p class="text-danger" th:if="${#fields.hasErrors('serviceCost')}" th:errors="*{serviceCost}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Service Max People:</label>
+            <input type="text" class="form-control" th:field="*{serviceMaxPeople}">
+            <p class="text-danger" th:if="${#fields.hasErrors('serviceMaxPeople')}" th:errors="*{serviceMaxPeople}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Service Type:</label>
+            <select class="form-control" th:field="*{serviceType.serviceTypeId}">
+                <option th:each="item:${serviceTypeList}" th:text="${item.serviceTypeName}"
+                        th:value="${item.serviceTypeId}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Rent Type:</label>
+            <select class="form-control" th:field="*{rentType.rentTypeId}">
+                <option th:each="item:${rentTypeList}" th:text="${item.rentTypeName}"
+                        th:value="${item.rentTypeId}"></option>
+            </select>
+        </div>
+
+        <div>
+            <input class="btn btn-warning" type="submit" value="Create villa service">
+        </div>
+    </div>
+</form>
+
+<script src="/jquery/jquery-3.6.0.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>

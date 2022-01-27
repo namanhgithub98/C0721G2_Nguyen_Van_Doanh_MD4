@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+<body>
+<div th:replace="/frame/navbar :: div"></div>
+<h1 class="text-center" style="color:crimson">Create Employee</h1>
+<a class="btn btn-primary mb-2 ml-4" href="/employee" role="button">Employee list</a>
+
+<form id="form" th:action="@{/create-employee}" th:object="${employeeDto}" method="post">
+    <input type="hidden" th:field="*{employeeId}"/>
+    <div class="container">
+        <div class="form-group">
+            <label>Employee Name:</label>
+            <input type="text" class="form-control" th:field="*{employeeName}">
+            <p class="text-danger" th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Employee Birthday:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" th:field="*{employeeSalary}">
+                <span class="input-group-text">VND</span>
+            </div>
+            <!--            <input type="date" class="form-control" th:field="*{employeeBirthday}">-->
+            <p class="text-danger" th:if="${#fields.hasErrors('employeeBirthday')}" th:errors="*{employeeBirthday}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Employee Id Card:</label>
+            <input type="text" class="form-control" th:field="*{employeeIdCard}">
+            <p class="text-danger" th:if="${#fields.hasErrors('employeeIdCard')}" th:errors="*{employeeIdCard}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Employee Salary:</label>
+            <input type="text" class="form-control" th:field="*{employeeSalary}">
+            <p class="text-danger" th:if="${#fields.hasErrors('employeeSalary')}" th:errors="*{employeeSalary}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Employee Phone:</label>
+            <input type="text" class="form-control" th:field="*{employeePhone}">
+            <p class="text-danger" th:if="${#fields.hasErrors('employeePhone')}" th:errors="*{employeePhone}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Employee Email:</label>
+            <input type="text" class="form-control" th:field="*{employeeEmail}">
+            <p class="text-danger" th:if="${#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Employee Address:</label>
+            <input type="text" class="form-control" th:field="*{employeeAddress}">
+            <p class="text-danger" th:if="${#fields.hasErrors('employeeAddress')}" th:errors="*{employeeAddress}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Position:</label>
+            <select class="form-control" th:field="*{positionEmpl.positionId}">
+                <option th:each="item:${positionEmplList}" th:text="${item.positionName}"
+                        th:value="${item.positionId}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Education Degree:</label>
+            <select class="form-control" th:field="*{educationDegree.educationDegreeId}">
+                <option th:each="item:${educationDegreeList}" th:text="${item.educationDegreeName}"
+                        th:value="${item.educationDegreeId}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Division:</label>
+            <select class="form-control" th:field="*{division.divisionId}">
+                <option th:each="item:${divisionList}" th:text="${item.divisionName}"
+                        th:value="${item.divisionId}"></option>
+            </select>
+        </div>
+
+        <div>
+            <input class="btn btn-warning" type="submit" value="Create employee">
+        </div>
+    </div>
+</form>
+
+<script src="/jquery/jquery-3.6.0.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>

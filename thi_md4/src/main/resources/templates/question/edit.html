@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Question</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+<body>
+<!--<div th:replace="/frame/navbar :: div"></div>-->
+<h1 class="text-center" style="color:crimson">Edit Question</h1>
+<a class="btn btn-primary mb-2 ml-4" href="/customer" role="button">Question list</a>
+
+<form id="form" th:action="@{/edit-question}" th:object="${questionDto}" method="post">
+    <input type="hidden" th:field="*{questionId}"/>
+    <div class="container">
+
+        <div class="form-group">
+            <label>Tiêu đề:</label>
+            <input type="text" class="form-control" th:field="*{questionTitle}">
+            <p class="text-danger" th:if="${#fields.hasErrors('questionTitle')}" th:errors="*{questionTitle}"></p>
+        </div>
+
+
+
+        <div>
+            <input class="btn btn-warning" type="submit" value="Create customer">
+        </div>
+    </div>
+</form>
+
+<script src="/jquery/jquery-3.6.0.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>

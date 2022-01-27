@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Contract</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+<body>
+<div th:replace="/frame/navbar :: div"></div>
+<h1 class="text-center" style="color:crimson">Create Contract</h1>
+<a class="btn btn-primary mb-2 ml-4" href="/contract" role="button">Contract list</a>
+
+<form th:action="@{/create-contract}" th:object="${contractDto}" method="post">
+    <input type="hidden" th:field="*{contractId}"/>
+    <div class="container">
+        <div class="form-group">
+            <label>Contract Start Date:</label>
+            <input type="date" class="form-control" th:field="*{contractStartDate}">
+            <p class="text-danger" th:if="${#fields.hasErrors('contractStartDate')}"
+               th:errors="*{contractStartDate}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Contract End Date:</label>
+            <input type="date" class="form-control" th:field="*{contractEndDate}">
+            <p class="text-danger" th:if="${#fields.hasErrors('contractEndDate')}" th:errors="*{contractEndDate}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Contract Deposit:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" th:field="*{contractDeposit}">
+                <span class="input-group-text">VND</span>
+            </div>
+            <!--            <input type="text" class="form-control" th:field="*{contractDeposit}">-->
+            <p class="text-danger" th:if="${#fields.hasErrors('contractDeposit')}" th:errors="*{contractDeposit}"></p>
+        </div>
+
+        <!--        <div class="form-group">-->
+        <!--            <label>Contract Total Money:</label>-->
+        <!--            <input type="text" class="form-control" th:field="*{contractTotalMoney}">-->
+        <!--            <p class="text-danger" th:if="${#fields.hasErrors('contractTotalMoney')}"-->
+        <!--               th:errors="*{contractTotalMoney}"></p>-->
+        <!--        </div>-->
+
+        <div class="form-group">
+            <label>Employee:</label>
+            <select class="form-control" th:field="*{employee.employeeId}">
+                <option th:each="item:${employeeList}" th:text="${item.employeeName}"
+                        th:value="${item.employeeId}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Customer:</label>
+            <select class="form-control" th:field="*{customer.customerId}">
+                <option th:each="item:${customerList}" th:text="${item.customerName}"
+                        th:value="${item.customerId}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Service:</label>
+            <select class="form-control" th:field="*{service.serviceId}">
+                <option th:each="item:${serviceList}" th:text="${item.serviceName}"
+                        th:value="${item.serviceId}"></option>
+            </select>
+        </div>
+
+        <div>
+            <input class="btn btn-warning" type="submit" value="Create contract">
+        </div>
+    </div>
+</form>
+
+<script src="/jquery/jquery-3.6.0.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>

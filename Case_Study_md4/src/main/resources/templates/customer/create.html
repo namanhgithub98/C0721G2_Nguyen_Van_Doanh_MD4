@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Customer</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+<body>
+<div th:replace="/frame/navbar :: div"></div>
+<h1 class="text-center" style="color:crimson">Create Customer</h1>
+<a class="btn btn-primary mb-2 ml-4" href="/customer" role="button">Customer list</a>
+
+<form id="form" th:action="@{/create-customer}" th:object="${customerDto}" method="post">
+    <input type="hidden" th:field="*{customerId}"/>
+    <div class="container">
+        <div class="form-group">
+            <label>Customer Code:</label>
+            <input type="text" class="form-control" th:field="*{customerCode}">
+            <p class="text-danger" th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Customer Name:</label>
+            <input type="text" class="form-control" th:field="*{customerName}">
+            <p class="text-danger" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Customer Birthday:</label>
+            <input class="form-control" type="date" th:field="*{customerBirthday}">
+            <p class="text-danger" th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Customer Gender:</label>
+            <select class="form-control" th:field="*{customerGender}">
+                <option th:value="0" th:text="Male"></option>
+                <option th:value="1" th:text="Female"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Customer Id Card:</label>
+            <input type="text" class="form-control" th:field="*{customerIdCard}">
+            <p class="text-danger" th:if="${#fields.hasErrors('customerIdCard')}" th:errors="*{customerIdCard}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Customer Phone:</label>
+            <input type="text" class="form-control" th:field="*{customerPhone}">
+            <p class="text-danger" th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Customer Email:</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Recipient's username"
+                       aria-describedby="basic-addon2" th:field="*{customerEmail}">
+                <span class="input-group-text" id="basic-addon2">@gmail.com</span>
+            </div>
+            <p class="text-danger" th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Customer Address:</label>
+            <input type="text" class="form-control" th:field="*{customerAddress}">
+            <p class="text-danger" th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Customer Type:</label>
+            <select class="form-control" th:field="*{customerType.customerTypeId}">
+                <option th:each="item:${customerTypeList}" th:text="${item.customerTypeName}"
+                        th:value="${item.customerTypeId}"></option>
+            </select>
+        </div>
+
+        <div>
+            <input class="btn btn-warning" type="submit" value="Create customer">
+        </div>
+    </div>
+</form>
+
+<script src="/jquery/jquery-3.6.0.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>

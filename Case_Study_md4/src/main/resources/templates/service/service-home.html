@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Home</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+<body>
+<div th:replace="/frame/navbar :: div"></div>
+<h1 class="text-center" style="color:crimson">Service Home</h1>
+<a class="btn btn-primary m-2 ml-4" href="/list" role="button">List Service</a>
+<div class="row">
+    <div class="card col-4" style="width: 18rem;">
+        <img src="/image/villa.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Villa service</h5>
+            <a href="/create-service-villa" class="btn btn-primary">Add new Villa</a>
+        </div>
+    </div>
+
+    <div class="card col-4" style="width: 18rem;">
+        <img src="/image/house.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">House service</h5>
+            <a href="/create-service-house" class="btn btn-primary">Add new House</a>
+        </div>
+    </div>
+
+    <div class="card col-4" style="width: 18rem;">
+        <img src="/image/room.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Room service</h5>
+            <a href="/create-service-room" class="btn btn-primary">Add new Room</a>
+        </div>
+    </div>
+</div>
+
+<script src="/jquery/jquery-3.6.0.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>
